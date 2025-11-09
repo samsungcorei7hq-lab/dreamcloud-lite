@@ -13,8 +13,10 @@ Dari Rakyat, Oleh Rakyat, Dan Untuk Rakyat di seluruh Dunia
 
 ---
 
-**DOWNLOAD:** link 1 = https://github.com/samsungcorei7hq-lab/dreamcloud-lite/releases
-              link 2 = https://drive.google.com/file/d/12rFnlLlEsTIozP6KeJXLDGG4yFdEOl5M/view?usp=drive_link
+**DOWNLOAD:** link 1 = https://github.com/samsungcorei7hq-lab/dreamcloud-lite/releases 
+
+**DOWNLOAD:** link 2 = https://drive.google.com/file/d/12rFnlLlEsTIozP6KeJXLDGG4yFdEOl5M/view?usp=drive_link
+
 **WEBSITE:** https://samsungcorei7hq-lab.github.io/dreamcloud-lite/  
 **SOURCE CODE:** https://github.com/samsungcorei7hq-lab/dreamcloud-lite  
 
