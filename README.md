@@ -22,6 +22,18 @@ Dari Rakyat, Oleh Rakyat, Dan Untuk Rakyat di seluruh Dunia
 **WEBSITE:** https://samsungcorei7hq-lab.github.io/dreamcloud-lite/  
 **SOURCE CODE:** https://github.com/samsungcorei7hq-lab/dreamcloud-lite  
 
+## 🛡️ Cara Install (Kalo Kena Windows Block):
+
+1. **Matikan Windows Defender sementara:**
+   - Windows Security → Virus & threat protection → Manage settings
+   - **Matikan** Real-time protection
+
+2. **Install DreamCloud**
+
+3. **Nyalain kembali** Windows Defender
+
+*Aplikasi 100% aman - open source, bisa dicek code-nya!*
+
 ---
 
 Dibuat dengan 💪 oleh developer Indonesia yang peduli dengan teknologi untuk rakyat!
