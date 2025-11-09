@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>DreamCloud Lite</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+        }
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            background: rgba(255,255,255,0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        h1 {
+            margin-bottom: 10px;
+        }
+        .status {
+            background: rgba(255,255,255,0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        #fileList {
+            margin-top: 20px; 
+            background: rgba(255,255,255,0.1); 
+            padding: 15px; 
+            border-radius: 10px; 
+            text-align: left; 
+            max-height: 150px; 
+            overflow-y: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>☁️ DreamCloud Lite</h1>
+        <p><em>Dari rakyat, oleh rakyat, untuk rakyat</em></p>
+        
+        <div class="status">
+            <div>💾 Storage Tersedia: <strong id="storage">20 GB</strong></div>
+            <div>👥 User Terhubung: <strong>4</strong></div>
+            <div>⭐ Karma Points: <strong>150</strong></div>
+            <div>📁 File Shared: <strong id="fileCount">0</strong></div>
+        </div>
+
+        <button onclick="tambahFile()">📁 Tambah File</button>
+        <button onclick="shareStorage()">🤝 Share Storage</button>
+        <button onclick="lihatUser()">👥 Lihat User</button>
+        
+        <div id="fileList">
+            <!-- List file akan muncul di sini -->
+        </div>
+
+        <div style="margin-top: 15px; font-size: 12px; opacity: 0.8;">
+            💡 Klik "Tambah File" untuk upload file pertama kamu!
+        </div>
+        
+        <p style="margin-top: 20px; font-size: 12px; opacity: 0.8;">
+            DreamCloud Beta v0.1 - Storage Gratis untuk Semua!
+        </p>
+    </div>
+
+    <script>
+// DreamCloud Lite - Complete Functions
+let sharedFiles = [];
+let totalStorageUsed = 0;
+const maxStorage = 20 * 1024 * 1024 * 1024; // 20 GB BESAR!
+
+function tambahFile() {
+    console.log('Membuka file picker...');
+    
+    const fileInput = document.createElement('input');
+    fileInput.type = 'file';
+    fileInput.multiple = true;
+    
+    fileInput.addEventListener('change', function(event) {
+        const files = event.target.files;
+        console.log('Files selected:', files);
+        
+        if (files.length > 0) {
+            let fileList = '📁 FILE DIPILIH:\n\n';
+            for (let i = 0; i < files.length; i++) {
+                fileList += `📄 ${files[i].name} (${formatFileSize(files[i].size)})\n`;
+                
+                // Simpan ke sharedFiles
+                sharedFiles.push({
+                    name: files[i].name,
+                    size: files[i].size,
+                    type: files[i].type
+                });
+                
+                totalStorageUsed += files[i].size;
+            }
+            alert(fileList);
+            
+            updateFileList();
+            updateStorageDisplay();
+        }
+    });
+    
+    fileInput.click();
+}
+
+function shareStorage() {
+    const mbToShare = prompt('Berapa MB storage yang mau kamu share ke jaringan?\n(1 MB = 1 Karma Point)', '10');
+    
+    if (mbToShare && !isNaN(mbToShare)) {
+        const points = parseInt(mbToShare);
+        alert(`🚀 TERIMA KASIH!\nKamu berbagi ${points} MB storage\n+${points} Karma Points!`);
+    }
+}
+
+function lihatUser() {
+    const onlineUsers = [
+        '👤 Budi (Jakarta) - 250 MB shared',
+        '👤 Sari (Bandung) - 150 MB shared', 
+        '👤 Rina (Surabaya) - 300 MB shared',
+        '👤 ANDA - ' + Math.round(totalStorageUsed / (1024 * 1024)) + ' MB used'
+    ];
+    
+    alert('🌐 USER TERHUBUNG:\n\n' + onlineUsers.join('\n'));
+}
+
+function updateFileList() {
+    const fileListElement = document.getElementById('fileList');
+    const fileCountElement = document.getElementById('fileCount');
+    
+    if (fileListElement) {
+        if (sharedFiles.length === 0) {
+            fileListElement.innerHTML = '<div style="text-align: center; opacity: 0.7;">📁 Belum ada file</div>';
+        } else {
+            fileListElement.innerHTML = sharedFiles.map(file => 
+                `<div class="file-item">
+                    <span>📄 ${file.name}</span>
+                    <span style="float: right; font-size: 12px;">${formatFileSize(file.size)}</span>
+                </div>`
+            ).join('');
+        }
+    }
+    
+    if (fileCountElement) {
+        fileCountElement.textContent = sharedFiles.length;
+    }
+}
+
+function updateStorageDisplay() {
+    const storageElement = document.getElementById('storage');
+    if (storageElement) {
+        const remainingStorage = maxStorage - totalStorageUsed;
+        storageElement.textContent = formatFileSize(remainingStorage);
+    }
+}
+
+function formatFileSize(bytes) {
+    if (bytes < 1024) return bytes + ' bytes';
+    else if (bytes < 1048576) return (bytes / 1024).toFixed(2) + ' KB';
+    else return (bytes / 1048576).toFixed(2) + ' MB';
+}
+
+// Initialize
+console.log('DreamCloud Lite - All functions loaded!');
+updateFileList();
+updateStorageDisplay();
+    </script>
+</body>
+</html>
